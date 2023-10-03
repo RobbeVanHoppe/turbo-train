@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: turbo_train
+      MYSQL_USER: devUser
+      MYSQL_PASSWORD: Dev
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: devUser
+      MYSQL_PASSWORD: Dev
+      MYSQL_DATABASE: turbo_train
+    depends_on:
+      - mysql
