@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "dPnxIrgFKDT5wEr3xV8nBe3zowOuTSgGNUQV+LAgyM/+whukIB58nzqyHQCBAz3nVtcBfeDH+xjLKGJoIszS9A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\robbe\\PycharmProjects\\turbo-train\\db-frontend\\db-frontend\\db-frontend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\robbe\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512"
+  ],
+  "logs": []
+}
