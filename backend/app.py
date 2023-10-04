@@ -1,6 +1,6 @@
 import os
-
-from flask import Flask, request, jsonify, Response
+import yahoo_finance
+from flask import Flask, request, jsonify
 import mysql.connector
 
 app = Flask(__name__)
@@ -83,6 +83,12 @@ def register():
                                                 f"'{user['username']}', '{user['password']}', '{user['email']}'",
                                                 'username, password, email')
     return jsonify(resp)
+
+
+@app.route('/api/ticker', methods=['POST'])
+def get_ticker():
+    data = yahoo_finance.get_data(request.args.get('ticker'))
+    return data.to_json(orient='records')
 
 
 if __name__ == "__main__":
