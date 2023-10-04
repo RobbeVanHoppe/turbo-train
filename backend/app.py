@@ -1,19 +1,23 @@
+import os
+
 from flask import Flask, request, jsonify, Response
-import json
 import mysql.connector
-from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
 def getMysqlConnection():
-    return mysql.connector.connect(user='testing', host='0.0.0.0', port='3306', password='testing', database='test')
+    host = os.environ.get('MYSQL_HOST', 'localhost')
+    port = os.environ.get('MYSQL_PORT', '3306')
+    user = os.environ.get('MYSQL_USER', 'devUser')
+    password = os.environ.get('MYSQL_PASSWORD', 'Dev')
+    database = os.environ.get('MYSQL_DATABASE', 'turbo_train')
+    return mysql.connector.connect(user=user, host=host, port=port, password=password, database=database)
 
 @app.route("/")
 def hello():
     return "Flask inside Docker!!"
 
 @app.route('/api/getMonths', methods=['GET'])
-@cross_origin() # allow all origins all methods.
 def get_months():
     db = getMysqlConnection()
     print(db)
